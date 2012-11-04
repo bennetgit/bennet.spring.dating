@@ -17,20 +17,20 @@ public class UserRegistForm implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "ÓÃ»§Ãû²»ÄÜÎª¿Õ£¡")  
-    @Size(min=6, max = 20, message = "ÓÃ»§Ãû²»ÄÜÎª¿Õ£¡")  
+    @NotNull(message = "ç”¨æˆ·åä¸èƒ½ä¸ºç©ºï¼")  
+    @Size(min=6, max = 20, message = "ç”¨æˆ·åä¸èƒ½ä¸ºç©ºï¼")  
 	private String username;
 	
     @NotNull  
-    @Size(min = 6, max = 20, message = "ÃÜÂë³¤¶È±ØĞëÔÚ6-20Ö®¼ä£¡") 
+    @Size(min = 6, max = 20, message = "å¯†ç é•¿åº¦å¿…é¡»åœ¨6-20ä¹‹é—´ï¼") 
 	private String password;
 	
     @NotNull  
-    @Size(min = 3, max = 10, message = "fname³¤¶È±ØĞëÔÚ3-10Ö®¼ä£¡") 
+    @Size(min = 3, max = 10, message = "fnameé•¿åº¦å¿…é¡»åœ¨3-10ä¹‹é—´ï¼") 
 	private String fname;
 	
     @NotNull  
-    @Size(min = 3, max = 10, message = "lname³¤¶È±ØĞëÔÚ3-10Ö®¼ä£¡")  
+    @Size(min = 3, max = 10, message = "lnameé•¿åº¦å¿…é¡»åœ¨3-10ä¹‹é—´ï¼")  
 	private String lname;
 	
     @NotEmpty 
@@ -46,7 +46,7 @@ public class UserRegistForm implements java.io.Serializable {
 	private int match_gender;
     
     @NotNull
-    @Size(min = 1, message = "relationship ±ØĞë×îÉÙÑ¡ÔñÒ»Ïî£¡")
+    @Size(min = 1, message = "relationship å¿…é¡»æœ€å°‘é€‰æ‹©ä¸€é¡¹ï¼")
 	private List<Integer> relationship_seek;
     
     @NotNull
@@ -54,7 +54,7 @@ public class UserRegistForm implements java.io.Serializable {
 	private int ethnicity;
 	
     @NotNull  
-    @Size(min = 10, max = 2000, message = "about ³¤¶È±ØĞëÔÚ10-2000Ö®¼ä£¡") 
+    @Size(min = 10, max = 2000, message = "about é•¿åº¦å¿…é¡»åœ¨10-2000ä¹‹é—´ï¼") 
 	private String about;
     
     @NotNull

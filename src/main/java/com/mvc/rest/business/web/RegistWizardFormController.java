@@ -130,7 +130,7 @@ public class RegistWizardFormController {
         // 我这里只是把表单的数据用JSON的方式发给浏览器  
   
         sessionStatus.setComplete();  
-        return "redirect:userlist";  
+        return "redirect:photo";  
     }
     
     @ResponseBody  
