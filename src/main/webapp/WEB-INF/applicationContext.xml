@@ -28,11 +28,11 @@
 	<bean id="webConfig" class="com.mvc.rest.beans.WebConfig">
 		<property name="params">
 			<map>
-				<entry key="imageRoot">
-					<value>${image.root}</value>
+				<entry key="imagePath">
+					<value>${static.image.patch}</value>
 				</entry>
 				<entry key="imageUploadPath">
-					<value>${image.uploadPath}</value>
+					<value>${static.photo.uploadPath}</value>
 				</entry>
 			</map>
 		</property>

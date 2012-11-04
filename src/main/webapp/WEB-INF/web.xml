@@ -109,8 +109,8 @@
     
     <!-- 网站的全局配置参数 -->
     <context-param>  
-	    <param-name>imageRoot</param-name>  
-	    <param-value>http://localhost:8081/interracialdating/images</param-value>  
+	    <param-name>staticPath</param-name>  
+	    <param-value>http://localhost:8082/interracialdating/static</param-value>  
 	</context-param>
 	<context-param>  
 	    <param-name>imageUploadPath</param-name>  

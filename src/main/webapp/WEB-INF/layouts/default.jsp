@@ -18,8 +18,8 @@ request.setAttribute("locale", locale.getLanguage());
 //request.setAttribute("webRoot", pro.getProperty("web.root")); 
 %>
 <!-- 
-<%= application.getInitParameter("imageRoot") %>
- ${initParam.imageRoot }
+<%= application.getInitParameter("staticPath") %>
+ ${initParam.staticPath }
  -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,15 +28,15 @@ request.setAttribute("locale", locale.getLanguage());
     <title><decorator:title default="Register page" /> - interracial dating site </title>
     <meta name="description" content="INTERRACIAL DATING - Our website provides interracial dating services for Black and White, Asian and Latino singles open to interracial relationships. Click here for extensive Success Stories and unique Guarantee.">
     <meta name="keywords" content="interracial dating services, black and white dating, interracial dating, black white dating, black women white men dating, black men white women dating, black women white men, black men white women, black and white dating">
-    <link rel="stylesheet" href="${ctx}/static/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="${ctx}/static/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${ctx}/static/css/color.css" type="text/css">
-    <link rel="stylesheet" href="${ctx}/static/css/widget095.css" type="text/css"> 
-    <script type="text/javascript" src="${ctx}/static/js/jquery-1.8.0.min.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/jquery.metadata.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/additional-methods.min.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/messages_${requestScope.locale}.js"></script>
+    <link rel="stylesheet" href="${initParam.staticPath }/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="${initParam.staticPath }/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${initParam.staticPath }/css/color.css" type="text/css">
+    <link rel="stylesheet" href="${initParam.staticPath }/css/widget095.css" type="text/css"> 
+    <script type="text/javascript" src="${initParam.staticPath }/js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="${initParam.staticPath }/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${initParam.staticPath }/js/jquery.metadata.js"></script>
+    <script type="text/javascript" src="${initParam.staticPath }/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${initParam.staticPath }/js/messages_${requestScope.locale}.js"></script>
     <decorator:head />
 </head>
 <body class="register">
@@ -124,13 +124,13 @@ request.setAttribute("locale", locale.getLanguage());
                 <!-- AddThis Button BEGIN -->
                 <div id="social-share" class="addthis_toolbox addthis_default_style addthis_32x32_style">
                     <a href="#" title="Facebook" class="addthis_button_facebook at300b">
-                        <img src="${ctx}/static/images/social-facebook.png" alt="Facebook" border="0" height="26"
+                        <img src="${initParam.staticPath }/images/social-facebook.png" alt="Facebook" border="0" height="26"
                             width="26">
                     </a><a title="Google" target="_blank" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=chellaul&amp;source=tbx32-300&amp;lng=zh-CN&amp;s=google&amp;url=http%3A%2F%2Fwww.interracialdating.com%2Fregister&amp;title=INTERRACIAL%20DATING%20-%20interracial%20dating%20site&amp;ate=AT-chellaul/-/-/5054464a8187df91/2&amp;frommenu=1&amp;uid=5054464a0c864c79&amp;ufbl=1&amp;ct=1&amp;pre=http%3A%2F%2Fwww.interracialdating.com%2Flogin&amp;tt=0&amp;captcha_provider=nucaptcha"
                         class="addthis_button_google at300b">
-                        <img src="${ctx}/static/images/social-google.png" alt="Google" border="0" height="26" width="26">
+                        <img src="${initParam.staticPath }/images/social-google.png" alt="Google" border="0" height="26" width="26">
                     </a><a href="#" title="Email" target="_blank" class="addthis_button_email at300b">
-                        <img src="${ctx}/static/images/social-email.png" alt="Email" border="0" height="26" width="26">
+                        <img src="${initParam.staticPath }/images/social-email.png" alt="Email" border="0" height="26" width="26">
                     </a>
                     <div class="atclear">
                     </div>

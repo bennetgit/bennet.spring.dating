@@ -63,8 +63,7 @@ public class LoginController {
         		request.getSession().setAttribute("loginUserInfo", u);
     			break;    		
     	}
-		
     	
-    	return "redirect:userlist";  
+    	return "redirect:home";
     }
 }

@@ -72,7 +72,7 @@ $().ready(function() {
 
 	<div class="grid-12 aleft" id="main">
 		<div class="signin">
-			Already a member? <a href="${ctx}/static/login">Login
+			Already a member? <a href="${initParam.staticPath }/login">Login
 			</a>
 		</div>
 		<h1>Become an InterracialDating.com Member</h1>
@@ -105,7 +105,7 @@ $().ready(function() {
 			</div>
 			<div class="row action">
 				<span class="notes">By continuing, you accept the <a
-					href="${ctx}/static/terms" target="_blank">Terms of
+					href="${initParam.staticPath }/terms" target="_blank">Terms of
 						use </a>and confirm that you are <br> 18 or older. We will never
 					share your private contact info.
 				</span>
@@ -121,70 +121,70 @@ $().ready(function() {
 				<div class="photo-ctn ">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7927665_13476684786157.jpg"
+							src="${initParam.staticPath }/images/tn_m7927665_13476684786157.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn last">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7635908_12385290149263.jpg"
+							src="${initParam.staticPath }/images/tn_m7635908_12385290149263.jpg"
 							alt="" height="100" width="71">
 					</div>
 				</div>
 				<div class="photo-ctn ">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7413959_13471537492730.jpg"
+							src="${initParam.staticPath }/images/tn_m7413959_13471537492730.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn last">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7454157_13471339181667.jpg"
+							src="${initParam.staticPath }/images/tn_m7454157_13471339181667.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn ">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7861466_13475050929839.jpg"
+							src="${initParam.staticPath }/images/tn_m7861466_13475050929839.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn last">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m8045986_13476576609585.jpg"
+							src="${initParam.staticPath }/images/tn_m8045986_13476576609585.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn ">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m38949_12352835902375.jpg"
+							src="${initParam.staticPath }/images/tn_m38949_12352835902375.jpg"
 							alt="" height="100" width="69">
 					</div>
 				</div>
 				<div class="photo-ctn last">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7350382_13285697611380.jpg"
+							src="${initParam.staticPath }/images/tn_m7350382_13285697611380.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn ">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7817655_13453522038852.jpg"
+							src="${initParam.staticPath }/images/tn_m7817655_13453522038852.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>
 				<div class="photo-ctn last">
 					<div class="photo photo-80x100">
 						<img class="last"
-							src="${ctx}/static/images/tn_m7850751_13173248585586.jpg"
+							src="${initParam.staticPath }/images/tn_m7850751_13173248585586.jpg"
 							alt="" height="100" width="80">
 					</div>
 				</div>

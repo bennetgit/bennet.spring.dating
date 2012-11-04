@@ -102,6 +102,12 @@ public class UserController {
 		return "forward:userlist";
 	}	
 	
+	@RequestMapping("/home")
+	public String home(){
+		logger.info("------------ home page ---------- ");
+		return "home";
+	}
+	
 	@RequestMapping("/photo")
 	public String addUser(){
 		logger.info("------------ upload photo ---------- ");

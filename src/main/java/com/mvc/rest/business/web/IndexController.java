@@ -23,7 +23,7 @@ public class IndexController {
 		logger.info("------------ index page ---------- ");
 		WebConfig webConfig = (WebConfig) SpringContextUtil.getBean("webConfig");
 		logger.info("------------ imageUploadPath: " + webConfig.getParams().get("imageUploadPath") + " ----------");
-		logger.info("------------ imageRoot: " + webConfig.getParams().get("imageRoot") + " ----------");
+		logger.info("------------ imageRoot: " + webConfig.getParams().get("imagePath") + " ----------");
 		return "/index";
 	}
 }
