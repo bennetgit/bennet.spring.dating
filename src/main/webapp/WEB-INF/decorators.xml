@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<decorators defaultdir="/WEB-INF/layouts">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>/test/welcome</pattern>
+        <pattern>/index</pattern>
+    </excludes>
+
+
+ 	<decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+    <decorator name="register" page="default.jsp">
+        <pattern>/register</pattern>
+    </decorator>
+        
+    <!-- 
+    <decorator name="test" page="main_sitemesh2.jsp">
+        <pattern>/userlist</pattern>
+    </decorator>
+     -->
+    <decorator name="header" page="header.jsp"/>
+    <decorator name="left" page="left.jsp"/>
+    <decorator name="right" page="right.jsp"/>
+    <decorator name="footer" page="footer.jsp"/>
+    <decorator name="top_menu" page="top_menu.jsp"/>
+
+</decorators>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mvc.rest.business.persistence.StateMapper">
+
+	<resultMap type="com.mvc.rest.business.domain.State" id="stateResultMap">
+		<id property="stt_id" column="stt_id" />
+		<result property="stt_cou_id" column="stt_cou_id" />
+		<result property="stt_name" column="stt_name" />
+		<result property="stt_abbr" column="stt_abbr" />
+		<result property="parent_stt_id" column="parent_stt_id" />
+	</resultMap>  
+
+	<!-- 检索 -->
+	<select id="selectStateByName" parameterType="java.lang.String"
+		resultType="state">
+		<!-- 检索sql文 -->
+		SELECT * FROM states
+		where stt_name = #{stt_name}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectStateById" parameterType="java.lang.Integer"
+		resultType="state">
+		<!-- 检索sql文 -->
+		SELECT * FROM states
+		where stt_id = #{stt_id}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectStatesByCou_id" parameterType="java.lang.Integer" resultType="com.mvc.rest.business.domain.State" resultMap="stateResultMap">
+		<!-- 检索sql文 -->
+		SELECT * FROM states
+		where disable=0 and stt_cou_id = #{stt_cou_id}
+		order by stt_name asc
+	</select>
+</mapper>

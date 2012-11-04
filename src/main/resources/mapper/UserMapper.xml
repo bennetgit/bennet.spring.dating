@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mvc.rest.business.persistence.UserMapper">
+
+	<resultMap type="com.mvc.rest.business.domain.User" id="userResultMap">
+		<id property="id" column="id" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="fname" column="fname" />
+		<result property="lname" column="lname" />
+		<result property="email" column="email" />
+		<result property="gender" column="gender" />
+		<result property="match_gender" column="match_gender" />
+		<result property="create_date" column="create_date" />
+		<result property="relationship_seek" column="relationship_seek" />
+		<result property="ethnicity" column="ethnicity" />
+		<result property="about" column="about" />
+		<result property="birthday" column="birthday" />
+		<result property="country_id" column="country_id" />
+		<result property="state_id" column="state_id" />
+	</resultMap>  
+
+	<!-- 检索 -->
+	<select id="selectUserByName" parameterType="java.lang.String"
+		resultType="user">
+		<!-- 检索sql文 -->
+		SELECT * FROM user
+		where username = #{username}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectUserByNameOrEmail" parameterType="login"
+		resultType="user">
+		<!-- 检索sql文 -->
+		SELECT * FROM user
+		<where>
+			<choose>
+				<when test="login != null and login != '' ">
+					username = #{login} or email = #{login}
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectUserById" parameterType="java.lang.Integer"
+		resultType="user">
+		<!-- 检索sql文 -->
+		SELECT * FROM user
+		where id = #{id}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectUsers" resultType="com.mvc.rest.business.domain.User" resultMap="userResultMap">
+		<!-- 检索sql文 -->
+		SELECT * FROM user
+	</select>
+
+	<!-- 插入 -->
+	<insert id="insertUser" parameterType="user">
+		insert into user (username,
+		password,fname,lname,email,gender,match_gender,create_date,relationship_seek,ethnicity,about,birthday,country_id,state_id)
+		values
+		(#{username},#{password},#{fname},#{lname},#{email},#{gender},#{match_gender},#{create_date},#{relationship_seek},#{ethnicity},#{about},#{birthday},#{country_id},#{state_id});
+	</insert>
+	<!-- 更新 -->
+	<update id="updateUser" parameterType="user">
+		update user set username = #{username},
+		password = #{password}
+	</update>
+	<!-- 删除 -->
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from user where id
+		= #{value}
+	</delete>
+</mapper>

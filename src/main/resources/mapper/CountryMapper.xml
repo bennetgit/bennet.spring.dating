@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mvc.rest.business.persistence.CountryMapper">
+
+	<resultMap type="com.mvc.rest.business.domain.Country" id="countryResultMap">
+		<id property="cou_id" column="cou_id" />
+		<result property="cou_name" column="cou_name" />
+		<result property="cc2" column="cc2" />
+		<result property="cc3" column="cc3" />
+		<result property="ccn" column="ccn" />
+		<result property="is_developed" column="is_developed" />
+		<result property="is_undesirable" column="is_undesirable" />
+		<result property="cou_currency" column="cou_currency" />
+		<result property="not_important_for_searches" column="not_important_for_searches" />
+	</resultMap>  
+
+	<!-- 检索 -->
+	<select id="selectCountryByName" parameterType="java.lang.String"
+		resultType="country">
+		<!-- 检索sql文 -->
+		SELECT * FROM countries
+		where cou_name = #{cou_name}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectCountryById" parameterType="java.lang.Integer"
+		resultType="country">
+		<!-- 检索sql文 -->
+		SELECT * FROM countries
+		where cou_id = #{cou_id}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectCountries" resultType="com.mvc.rest.business.domain.Country" resultMap="countryResultMap">
+		<!-- 检索sql文 -->
+		SELECT * FROM countries
+		where not_important_for_searches=0 
+		and cou_id not in (44,118,16,42,39,78,79,89,165,190) 
+		and cou_id in (193,9,10,17,31,47,59,60,64,66,192,75,80,81,82,84,101,122,123,127,137,152,90,158,163,164,166,180,0,46,36)
+		order by cou_id asc, cou_name asc
+	</select>
+</mapper>

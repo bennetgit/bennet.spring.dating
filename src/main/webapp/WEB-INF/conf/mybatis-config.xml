@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 基础设置 -->
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<!-- 别名定义 -->
+	<typeAliases>
+		<typeAlias alias="user" type="com.mvc.rest.business.domain.User" />
+		<typeAlias alias="country" type="com.mvc.rest.business.domain.Country" />
+		<typeAlias alias="state" type="com.mvc.rest.business.domain.State" />
+		<typeAlias alias="login" type="com.mvc.rest.beans.UserLoginForm" />
+	</typeAliases>
+	<!-- SQL映射文件 -->
+	<mappers>
+		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/CountryMapper.xml" />
+		<mapper resource="mapper/StateMapper.xml" />
+	</mappers>
+</configuration>

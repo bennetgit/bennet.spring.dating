@@ -1,0 +1,31 @@
+/********** navigation **********/
+
+#logo a {
+	width: 410px;
+	background: url(../images/interracial-dating-logo-main.png) no-repeat;
+}
+
+#logo a span {
+	position: absolute;
+	bottom: 14px;
+	left: 83px;
+	font-size: 13px;
+}
+
+/********** backdoor search **********/
+
+@media screen and (max-width: 780px) {
+
+#logo a {
+	width: 290px;
+	background: url(../images/interracial-dating-logo-main-fb.png) no-repeat;
+}
+
+#logo a span {
+	position: absolute;
+	bottom: 8px;
+	left: 60px;
+	font-size: 12px;
+}
+	
+}

@@ -1,0 +1,25 @@
+﻿main.title=这里是标题!
+  
+title=SpringMVC 标题
+  
+Username=用户名
+
+Password=密码
+
+email=邮件
+  
+relationship=关系   
+  
+ethnicity=种族  
+  
+submit=提交
+  
+welcome=欢迎!
+  
+loginSuccess=登录成功！
+  
+usernameerror=用户名错误
+  
+passworderror=密码错误
+  
+doublepassword=输入密码

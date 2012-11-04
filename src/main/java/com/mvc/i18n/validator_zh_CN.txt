@@ -1,0 +1,41 @@
+form.register.email=邮件地址不会显示在用户信息中
+
+form.register.password=密码必须填写，长度在6-20个字符
+
+validator.error.email=邮件必须填写
+
+validator.error.password=密码必须填写
+
+validator.error.username=用户名必须填写并且字数在6到20之间！
+
+validator.error.r_email=邮件必须填写！
+
+validator.error.f_email=请输入正确的邮件格式！
+
+validator.error.r_password=密码必须填写！
+
+validator.error.l_password=密码长度必须在 {0}-{1} 个字符之间！
+
+validator.error.r_gender=性别必须填写!
+
+validator.error.r_match_gender=对象性别必须填写!
+
+validator.error.r_relationship=关系必须填写!
+
+validator.error.r_ethnicity=种族必须填写!
+
+validator.error.r_about=自我介绍必须填写!
+
+validator.error.l_about=自我介绍长度必须在 {0}-{1} 个字符之间！
+
+validator.error.r_username=用户名必须填写!
+
+validator.error.l_username=用户名长度必须在 {0}-{1} 个字符之间!
+
+validator.error.r_fname=名字必须填写!
+
+validator.error.l_fname=名字长度必须在 {0}-{1} 个字符之间!
+
+validator.error.r_lname=姓氏必须填写!
+
+validator.error.l_lname=姓氏长度必须在 {0}-{1} 个字符之间!

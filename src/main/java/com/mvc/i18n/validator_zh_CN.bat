@@ -1,0 +1,1 @@
+native2ascii -encoding utf-8 validator_zh_CN.txt validator_zh_CN.properties
