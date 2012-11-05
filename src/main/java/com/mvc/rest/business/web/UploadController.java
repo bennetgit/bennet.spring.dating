@@ -24,7 +24,7 @@ import com.mvc.uitls.RequestParser;
 import com.mvc.uitls.SpringContextUtil;
 
 @Controller
-public class UploadController<K> {
+public class UploadController {
 	private Logger logger = Logger.getLogger(UploadController.class.getName());
 
 	static WebConfig webConfig = (WebConfig) SpringContextUtil.getBean("webConfig");
@@ -33,6 +33,7 @@ public class UploadController<K> {
 
     private static String CONTENT_TYPE = "text/plain";
     private static String CONTENT_LENGTH = "Content-Length";
+    private static String ENCODING = "utf-8";
     private static int RESPONSE_CODE = 200;
 	
 	@ResponseBody  
@@ -40,18 +41,19 @@ public class UploadController<K> {
 	public Object upload(HttpServletRequest req, HttpServletResponse resp) {
 		
 		Map<String, Object> ret = new HashMap<String, Object>();
-		
-        String contentLengthHeader = req.getHeader(CONTENT_LENGTH);
-        Long expectedFileSize = StringUtils.isBlank(contentLengthHeader) ? null : Long.parseLong(contentLengthHeader);
-		
-        logger.info("--------- expectedFileSize " + expectedFileSize + "--------------");
-        
-        RequestParser requestParser;
         
         try
         {
+    		req.setCharacterEncoding(ENCODING);
+            String contentLengthHeader = req.getHeader(CONTENT_LENGTH);
+            Long expectedFileSize = StringUtils.isBlank(contentLengthHeader) ? null : Long.parseLong(contentLengthHeader);
+    		
+            logger.info("--------- expectedFileSize " + expectedFileSize + "--------------");
+            
+            RequestParser requestParser;
             resp.setContentType(CONTENT_TYPE);
             resp.setStatus(RESPONSE_CODE);
+            resp.setCharacterEncoding(ENCODING);
             
             if (!UPLOAD_DIR.exists()) {
             	logger.info("--------- create dirs --------------");
