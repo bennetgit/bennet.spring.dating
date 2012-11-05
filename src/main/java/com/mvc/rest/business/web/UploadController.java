@@ -52,6 +52,11 @@ public class UploadController<K> {
         {
             resp.setContentType(CONTENT_TYPE);
             resp.setStatus(RESPONSE_CODE);
+            
+            if (!UPLOAD_DIR.exists()) {
+            	logger.info("--------- create dirs --------------");
+            	UPLOAD_DIR.mkdirs();
+            }
 
             if (ServletFileUpload.isMultipartContent(req))
             {
