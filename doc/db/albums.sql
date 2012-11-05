@@ -56,11 +56,11 @@ CREATE TABLE `albums` (
   `description` varchar(200) DEFAULT NULL,
   `category` int(11) NOT NULL,
   `permission` int(11) NOT NULL,
-  `cover` int(11) DEFAULT NULL,
+  `cover` int(11) unsigned DEFAULT NULL,
   `order` int(11) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk$albums_permission` (`permission`),
   KEY `fk$albums_cover` (`cover`),
@@ -79,15 +79,19 @@ CREATE TABLE `albums` (
 DROP TABLE IF EXISTS `photos`;
 
 CREATE TABLE `photos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `album` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
   `tags` varchar(200) DEFAULT NULL,
   `order` int(11) NOT NULL,
   `created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk$photos_albums_id` (`album`),
+  CONSTRAINT `fk$photos_albums_id` FOREIGN KEY (`album`) REFERENCES `albums` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE photos AUTO_INCREMENT=1000;
 
 /*Data for the table `photos` */
 
