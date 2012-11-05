@@ -22,7 +22,13 @@ function createUploader(){
         template: '<div class="qq-uploader">' + '<div class="qq-upload-button upload button orange">{uploadButtonText}</div>' + '<ul class="qq-upload-list"></ul>' + '</div>',
         extraDropzones: [qq.getByClass(document, 'qq-upload-extra-drop-area')[0]],
         hideDropzones: false,
-        disableDefaultDropzone: true
+        disableDefaultDropzone: true,
+        failedUploadTextDisplay: {
+        	mode: 'custom',
+        	maxChars: 40,
+        	responseProperty: 'error',
+        	enableTooltip: true
+      	}
     });           
 }
 

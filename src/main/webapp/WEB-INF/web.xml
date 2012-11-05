@@ -113,7 +113,7 @@
 	    <param-value>http://localhost:8082/interracialdating/static</param-value>  
 	</context-param>
 	<context-param>  
-	    <param-name>imageUploadPath</param-name>  
-	    <param-value>D:/var/www/interracialdating/images/</param-value>  
+	    <param-name>photoUploadPath</param-name>  
+	    <param-value>D:/var/www/interracialdating/pic/</param-value>  
 	</context-param>
 </web-app>
