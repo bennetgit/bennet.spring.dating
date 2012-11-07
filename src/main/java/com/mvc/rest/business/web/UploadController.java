@@ -16,12 +16,14 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mvc.rest.beans.WebConfig;
 import com.mvc.rest.business.domain.User;
+import com.mvc.rest.business.service.IUploaderService;
 import com.mvc.uitls.MultipartUploadParser;
 import com.mvc.uitls.RequestParser;
 import com.mvc.uitls.SpringContextUtil;
@@ -40,86 +42,23 @@ public class UploadController {
     
     public File UPLOAD_DIR;
     public File TEMP_DIR;
+    
+    @Autowired
+    private IUploaderService uploaderService;
 	
 	@ResponseBody  
 	@RequestMapping("/upload")
 	public Object upload(HttpServletRequest req, HttpServletResponse resp) {
+		
 		Map<String, Object> ret = new HashMap<String, Object>();
 		
-	    List<String> fileTypes = new ArrayList();
-	    fileTypes.add("jpg");
-	    fileTypes.add("jpeg");
-	    fileTypes.add("bmp");
-	    fileTypes.add("gif");
-	    fileTypes.add("png");
 		User user = (User)req.getSession().getAttribute("loginUserInfo");
 		if (user == null) {
 			ret.put("error", "Please logging first!");
 			return ret;
 		}
 		
-		String user_id = String.valueOf(user.getId());
-
-		String patch = (String) webConfig.getParams().get("imageUploadPath") + "/"
-				+ user_id.substring(user_id.length() - 1) + "/"
-				+ user_id.substring(user_id.length() - 3) + "/"
-				+ user_id;
-		File UPLOAD_DIR = new File(patch);
-		TEMP_DIR = new File("uploadsTemp");
-
-        try
-        {
-    		req.setCharacterEncoding(ENCODING);
-            String contentLengthHeader = req.getHeader(CONTENT_LENGTH);
-            Long expectedFileSize = StringUtils.isBlank(contentLengthHeader) ? null : Long.parseLong(contentLengthHeader);
-    		if (expectedFileSize > MAXSIZE) {
-    			ret.put("error", "The size is more than 50kb!");
-    			return ret;
-    		}
-            logger.info("--------- expectedFileSize " + expectedFileSize + "--------------");
-            
-            RequestParser requestParser;
-            resp.setContentType(CONTENT_TYPE);
-            resp.setStatus(RESPONSE_CODE);
-            resp.setCharacterEncoding(ENCODING);
-            
-            if (!UPLOAD_DIR.exists()) {
-            	logger.info("--------- create dirs --------------");
-            	UPLOAD_DIR.mkdirs();
-            }
-
-            if (ServletFileUpload.isMultipartContent(req))
-            {
-                requestParser = RequestParser.getInstance(req, new MultipartUploadParser(req, TEMP_DIR, req.getServletContext()));
-                String fileName = requestParser.getFilename();
-                String ext = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());  
-                ext = ext.toLowerCase();
-                if (!fileTypes.contains(ext)) {
-                	ret.put("error", "file type is not correct!");
-                	return ret;
-                }
-                doWriteTempFileForPostRequest(requestParser);
-                ret.put("success", true);
-            }
-            else
-            {
-                requestParser = RequestParser.getInstance(req, null);
-                String fileName = requestParser.getFilename();
-                String ext = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());  
-                ext = ext.toLowerCase();
-                if (!fileTypes.contains(ext)) {
-                	ret.put("error", "file type is not correct!");
-                	return ret;
-                }
-                writeToTempFile(req.getInputStream(), new File(UPLOAD_DIR, requestParser.getFilename()), expectedFileSize);
-                ret.put("success", true);
-            }
-        } catch (Exception e)
-        {
-        	logger.error("Problem handling upload request", e);
-            ret.put("error", "Problem handling upload request");
-        }
-        
+        ret = uploaderService.savePhoto(req, resp, user.getId(), 3);
 		//ret.put("success", true);
 		//ret.put("error", "test error");
 		return ret;

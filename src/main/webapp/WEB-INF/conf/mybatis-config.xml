@@ -12,11 +12,21 @@
 		<typeAlias alias="country" type="com.mvc.rest.business.domain.Country" />
 		<typeAlias alias="state" type="com.mvc.rest.business.domain.State" />
 		<typeAlias alias="login" type="com.mvc.rest.beans.UserLoginForm" />
+		<typeAlias alias="album" type="com.mvc.rest.business.domain.Album" />
+		<typeAlias alias="albumCategory" type="com.mvc.rest.business.domain.AlbumCategory" />
+		<typeAlias alias="albumPermission" type="com.mvc.rest.business.domain.AlbumPermission" />
+		<typeAlias alias="photo" type="com.mvc.rest.business.domain.Photo" />
 	</typeAliases>
 	<!-- SQL映射文件 -->
 	<mappers>
 		<mapper resource="mapper/UserMapper.xml" />
 		<mapper resource="mapper/CountryMapper.xml" />
 		<mapper resource="mapper/StateMapper.xml" />
+		<mapper resource="mapper/AlbumMapper.xml" />
+		<!--
+		<mapper resource="mapper/AlbumCategoryMapper.xml" />
+		<mapper resource="mapper/AlbumPermissionMapper.xml" />
+		-->
+		<mapper resource="mapper/PhotoMapper.xml" />
 	</mappers>
 </configuration>

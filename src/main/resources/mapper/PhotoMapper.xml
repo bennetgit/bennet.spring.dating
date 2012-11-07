@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mvc.rest.business.persistence.PhotoMapper">
+
+	<resultMap type="com.mvc.rest.business.domain.Photo" id="photoResultMap">
+		<id property="id" column="id" />
+		<result property="album" column="album" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="tags" column="tags" />
+		<result property="order" column="order" />
+		<result property="created" column="created" />
+	</resultMap>  
+
+	<!-- 检索 -->
+	<select id="selectPhotosById" parameterType="java.lang.Integer"
+		resultType="photo">
+		<!-- 检索sql文 -->
+		SELECT * FROM photos
+		where id = #{id}
+	</select>
+
+	<!-- 检索 -->
+	<select id="selectPhotosByAlbumId" parameterType="java.lang.Integer"
+		resultType="photo">
+		<!-- 检索sql文 -->
+		SELECT * FROM photos
+		where album = #{album}
+	</select>
+
+	<!-- 插入 -->
+	<insert id="insertPhoto" parameterType="photo">
+	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+		insert into photos (album, `name`, description, tags, `order`, created) 
+		values (#{album},#{name},#{description},#{tags},#{order}, NOW());
+	</insert>
+	<!-- 更新 -->
+	<update id="updatePhoto" parameterType="photo">
+		update photos
+		<set>
+			<if test="album != null and album != '' ">
+				album = #{album},
+			</if>		
+			<if test="name != null and name != '' ">
+				`name` = #{name},
+			</if>
+			<if test="description != null and description != '' ">
+				description = #{description},
+			</if>
+			<if test="tags != null and tags != '' ">
+				tags = #{tags},
+			</if>
+			<if test="order != null and order != '' ">
+				`order` = #{order},
+			</if>
+			<if test="created != null and created != '' ">
+				created = #{created}
+			</if>
+			where id = #{id}
+		</set>
+	</update>
+	<!-- 删除 -->
+	<delete id="deletePhoto" parameterType="java.lang.Integer">
+		delete from photos where id = #{id}
+	</delete>
+</mapper>
