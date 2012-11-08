@@ -109,7 +109,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/photo")
-	public String addUser(){
+	public String addPhoto(){
 		logger.info("------------ upload photo ---------- ");
 		return "photoupload";
 	}

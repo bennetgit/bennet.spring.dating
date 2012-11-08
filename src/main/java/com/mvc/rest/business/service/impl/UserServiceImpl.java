@@ -48,7 +48,16 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean saveUser(User u) {
 		// TODO Auto-generated method stub
-		int success = userMapper.insertUser(u);
+		int success = 0;
+		try
+        {
+			success = userMapper.insertUser(u);
+        }
+		catch(RuntimeException e)
+		{
+			throw e;
+		}
+
 		return success > 0;
 	}
 
@@ -83,7 +92,17 @@ public class UserServiceImpl implements IUserService {
 		u.setBirthday(calendar.getTime());
 		u.setCountry_id(f.getCountry_id());
 		u.setState_id(f.getState_id());
-		int success = userMapper.insertUser(u);
+		
+		int success = 0;
+		try
+        {
+			success = userMapper.insertUser(u);
+        }
+		catch(RuntimeException e)
+		{
+			throw e;
+		}
+		//int success = userMapper.insertUser(u);
 		return success > 0;
 		
 		//return true;
@@ -92,15 +111,31 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public boolean updateUser(User u) {
 		// TODO Auto-generated method stub
-		int success = userMapper.updateUser(u);
+		int success = 0;
+		try
+        {
+			success = userMapper.updateUser(u);
+        }
+		catch(RuntimeException e)
+		{
+			throw e;
+		}
+		//int success = userMapper.updateUser(u);
 		return success > 0;
 	}
 
 	@Override
 	public boolean deleteUser(List<Integer> listIds) {
 		int success = 0;
-		for(int i =0; i < listIds.size(); i++){
-			success += userMapper.deleteUser(listIds.get(i));
+		try
+        {
+			for(int i =0; i < listIds.size(); i++){
+				success += userMapper.deleteUser(listIds.get(i));
+			}
+        }
+		catch(RuntimeException e)
+		{
+			throw e;
 		}
 		return success > 0;
 	}

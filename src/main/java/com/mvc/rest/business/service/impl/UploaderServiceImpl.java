@@ -19,7 +19,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mvc.exception.FileException;
+import com.mvc.rest.business.domain.Album;
 import com.mvc.rest.business.domain.Photo;
+import com.mvc.rest.business.persistence.AlbumMapper;
 import com.mvc.rest.business.persistence.PhotoMapper;
 import com.mvc.rest.business.service.IUploaderService;
 import com.mvc.rest.business.web.UploadController;
@@ -47,6 +49,9 @@ public class UploaderServiceImpl implements IUploaderService {
 	
 	@Autowired
 	private PhotoMapper photoMapper;
+	
+	@Autowired
+	private AlbumMapper albumMapper;
 
 	@Override
 	public Map savePhoto(HttpServletRequest req, HttpServletResponse resp,
@@ -186,4 +191,34 @@ public class UploaderServiceImpl implements IUploaderService {
             IOUtils.closeQuietly(fos);
         }
     }
+
+	@Override
+	public int createAlbum(Album album) {
+		// TODO Auto-generated method stub
+		
+		logger.info("--------- create album:" + album.getName() + " --------------");
+		
+		int albumId = albumMapper.insertAlbum(album);
+		
+		return album.getId();
+	}
+
+	@Override
+	public Map savePhoto(HttpServletRequest req, HttpServletResponse resp,
+			int user_id, Album album) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> ret = new HashMap<String, Object>();
+		
+		try
+		{
+			int albumId = createAlbum(album);
+			ret = savePhoto(req, resp, user_id, albumId);
+		}
+		catch(RuntimeException e)
+		{
+			throw e;
+		}
+		return ret;
+	}
 }

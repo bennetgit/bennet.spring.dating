@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mvc.exception.FileException;
+import com.mvc.rest.business.domain.Album;
 import com.mvc.rest.business.domain.User;
+import com.mvc.rest.business.service.IAlbumService;
 import com.mvc.rest.business.service.IUploaderService;
 
 
@@ -23,20 +25,41 @@ public class UploadController {
 
     @Autowired
     private IUploaderService uploaderService;
+    
+    @Autowired
+    private IAlbumService albumService;
 	
+    /**
+     * upload 上传用户照片到默认相册， 如果没有这自动生成 Category类型为1的相册
+     * @param req
+     * @param resp
+     * @return
+     */
 	@ResponseBody  
 	@RequestMapping("/upload")
 	public Object upload(HttpServletRequest req, HttpServletResponse resp) {
 		
 		Map<String, Object> ret = new HashMap<String, Object>();
 		
-		User user = (User)req.getSession().getAttribute("loginUserInfo");
+		User user = (User) req.getSession().getAttribute("loginUserInfo");
 		if (user == null) {
 			ret.put("error", "Please logging first!");
 			return ret;
 		}
+		
 		try {
-			ret = uploaderService.savePhoto(req, resp, user.getId(), 1);
+			Album album = albumService.getAlbumByCategory(user.getId(), 1);
+			if (album == null) {
+				album = new Album();
+				album.setCategory(1);
+				album.setDescription("Upload your photos!");
+				album.setName("Photo album");
+				album.setOrder(1);
+				album.setPermission(1);
+				album.setUser_id(user.getId());
+				//albumService.createAlbum(album);
+			}
+			ret = uploaderService.savePhoto(req, resp, user.getId(), album);
 		} catch (RuntimeException e) {
 			ret.put("error", e.getMessage());
 		}

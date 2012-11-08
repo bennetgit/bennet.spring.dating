@@ -67,7 +67,7 @@ CREATE TABLE `albums` (
   KEY `fk$albums_user_id` (`user_id`),
   KEY `fk$albums_category` (`category`),
   CONSTRAINT `fk$albums_category` FOREIGN KEY (`category`) REFERENCES `album_categories` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `fk$albums_cover` FOREIGN KEY (`cover`) REFERENCES `photos` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk$albums_cover` FOREIGN KEY (`cover`) REFERENCES `photos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `fk$albums_permission` FOREIGN KEY (`permission`) REFERENCES `album_permissions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk$albums_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,7 +89,7 @@ CREATE TABLE `photos` (
   PRIMARY KEY (`id`),
   KEY `fk$photos_albums_id` (`album`),
   CONSTRAINT `fk$photos_albums_id` FOREIGN KEY (`album`) REFERENCES `albums` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 ALTER TABLE photos AUTO_INCREMENT=1000;
 

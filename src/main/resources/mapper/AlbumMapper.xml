@@ -18,11 +18,11 @@
 	</resultMap>  
 
 	<!-- 检索 -->
-	<select id="selectAlbumById" parameterType="java.lang.Integer"
+	<select id="selectAlbumByCategory" parameterType="java.util.Map"
 		resultType="album">
 		<!-- 检索sql文 -->
 		SELECT * FROM albums
-		where id = #{id}
+		where user_id = #{user_id} and category = #{category}
 	</select>
 
 	<!-- 检索 -->
@@ -34,12 +34,15 @@
 
 	<!-- 插入 -->
 	<insert id="insertAlbum" parameterType="album">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 		insert into albums (
-			name, description, category, permission, 
-			cover, order, created, updated, user_id
+			`name`, description, category, permission, 
+			`order`, user_id, created
 		) values (
-			#{name},#{description},#{category},#{permission},
-			#{cover},#{order},#{created},#{updated},#{user_id}
+			#{name}, #{description}, #{category}, #{permission},
+			#{order}, #{user_id}, NOW()
 		);
 	</insert>
 	<!-- 更新 -->
@@ -47,7 +50,7 @@
 		update albums
 		<set>
 			<if test="name != null and name != '' ">
-				name = #{name},
+				`name` = #{name},
 			</if>
 			<if test="description != null and description != '' ">
 				description = #{description},
@@ -61,8 +64,11 @@
 			<if test="cover != null and cover != '' ">
 				cover = #{cover},
 			</if>
+			<if test="order != null and order != '' ">
+				`order` = #{order},
+			</if>
 			<if test="updated != null and updated != '' ">
-				updated = #{updated}
+				updated = NOW()
 			</if>
 			where id = #{id}
 		</set>
