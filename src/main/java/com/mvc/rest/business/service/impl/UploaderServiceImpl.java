@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +18,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.mvc.exception.FileException;
 import com.mvc.rest.business.domain.Photo;
-import com.mvc.rest.business.domain.User;
 import com.mvc.rest.business.persistence.PhotoMapper;
 import com.mvc.rest.business.service.IUploaderService;
 import com.mvc.rest.business.web.UploadController;
@@ -97,8 +93,9 @@ public class UploaderServiceImpl implements IUploaderService {
             String contentLengthHeader = req.getHeader(CONTENT_LENGTH);
             Long expectedFileSize = StringUtils.isBlank(contentLengthHeader) ? null : Long.parseLong(contentLengthHeader);
     		if (expectedFileSize > MAXSIZE) {
-    			ret.put("error", "The size is more than 50kb!");
-    			return ret;
+    			//ret.put("error", "The size is more than 50kb!");
+    			//return ret;
+    			throw new FileException("The size is more than 50kb!");
     		}
             logger.info("--------- expectedFileSize " + expectedFileSize + "--------------");
             
@@ -120,8 +117,9 @@ public class UploaderServiceImpl implements IUploaderService {
                 String ext = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());  
                 ext = ext.toLowerCase();
                 if (!fileTypes.contains(ext)) {
-                	ret.put("error", "File type is not correct!");
-                	return ret;
+                	//ret.put("error", "File type is not correct!");
+                	//return ret;
+                	throw new FileException("File type is not correct!");
                 }
                 doWriteTempFileForPostRequest(requestParser, photoId);
                 ret.put("success", true);
@@ -134,16 +132,19 @@ public class UploaderServiceImpl implements IUploaderService {
                 String ext = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());  
                 ext = ext.toLowerCase();
                 if (!fileTypes.contains(ext)) {
-                	ret.put("error", "File type is not correct!");
-                	return ret;
+                	throw new FileException("File type is not correct!");
+                	//ret.put("error", "File type is not correct!");
+                	//return ret;
                 }
                 writeToTempFile(req.getInputStream(), new File(UPLOAD_DIR, photoId + ".jpg"), expectedFileSize);
                 ret.put("success", true);
             }
-        } catch (Exception e)
-        {
+        } catch (FileException re) {
+        	throw re; 
+		} catch (Exception e) {
         	logger.error("Problem handling upload request", e);
-            ret.put("error", "Problem handling upload request");
+            //ret.put("error", "Problem handling upload request");
+            throw new RuntimeException("Problem handling upload request!"); 
         }
         
 		return ret;
