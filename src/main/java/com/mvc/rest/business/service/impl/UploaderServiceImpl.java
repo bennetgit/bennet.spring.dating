@@ -197,8 +197,9 @@ public class UploaderServiceImpl implements IUploaderService {
 		// TODO Auto-generated method stub
 		
 		logger.info("--------- create album:" + album.getName() + " --------------");
-		
-		int albumId = albumMapper.insertAlbum(album);
+		if ( album.getId() == 0) {
+			albumMapper.insertAlbum(album);
+		}
 		
 		return album.getId();
 	}

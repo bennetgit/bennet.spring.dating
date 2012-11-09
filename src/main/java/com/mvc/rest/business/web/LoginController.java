@@ -66,4 +66,11 @@ public class LoginController {
     	
     	return "redirect:home";
     }
+    
+    @RequestMapping(value = "/logout", method = {RequestMethod.GET})  
+    public String logout(SessionStatus sessionStatus) {  
+    	logger.info("======== login out ==========="); 
+    	sessionStatus.setComplete();
+        return "redirect:index";  
+    } 
 }
